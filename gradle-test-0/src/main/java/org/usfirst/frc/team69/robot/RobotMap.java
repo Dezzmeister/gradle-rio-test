@@ -20,6 +20,6 @@ public class RobotMap {
 	}
 	
 	public static class Ramp {
-		@Port(type = Type.PCM) public static final int SOLENOID = 3;
+		@Port(type = Type.PCM) public static final int SOLENOID = 5;
 	}
 }

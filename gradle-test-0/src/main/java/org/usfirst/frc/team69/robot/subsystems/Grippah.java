@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Grippah extends Subsystem {
 	private DoubleSolenoid solenoid = new DoubleSolenoid(SOLENOID_FORWARD, SOLENOID_REVERSE);
-
+	
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(openGrippah());		
