@@ -3,12 +3,14 @@ package org.usfirst.frc.team69.robot;
 import org.hyperonline.hyperlib.HYPERRobot;
 import org.hyperonline.hyperlib.oi.OI;
 import org.usfirst.frc.team69.robot.subsystems.DriveSubsystem;
+import org.usfirst.frc.team69.robot.subsystems.Grippah;
 
 public class Robot extends HYPERRobot {
 	
 	public static OI oi;
 	
 	public static DriveSubsystem driveSubsystem;
+	public static Grippah grippah;
 	
 	@Override
 	protected void initOI() {
@@ -19,6 +21,7 @@ public class Robot extends HYPERRobot {
 	@Override
 	protected void initSubsystems() {
 		driveSubsystem = new DriveSubsystem();
+		grippah = new Grippah();
 	}
 
 	@Override
