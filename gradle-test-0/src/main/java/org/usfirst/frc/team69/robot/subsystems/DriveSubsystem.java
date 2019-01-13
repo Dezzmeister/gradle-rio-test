@@ -1,35 +1,31 @@
 package org.usfirst.frc.team69.robot.subsystems;
 
 import org.hyperonline.hyperlib.QuickCommand;
-import org.usfirst.frc.team69.robot.Robot;
 import org.usfirst.frc.team69.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class DriveSubsystem extends Subsystem {
 	
-	private SpeedController leftFrontMotor = new Talon(RobotMap.Drive.LEFT_FRONT_MOTOR);
-	private SpeedController leftRearMotor = new Talon(RobotMap.Drive.LEFT_REAR_MOTOR);
-	private SpeedController rightFrontMotor = new Talon(RobotMap.Drive.RIGHT_FRONT_MOTOR);
-	private SpeedController rightRearMotor = new Talon(RobotMap.Drive.RIGHT_REAR_MOTOR);
+	private SpeedController leftController = new VictorSP(RobotMap.Drive.LEFT_DRIVE);
+	private SpeedController rightController = new VictorSP(RobotMap.Drive.RIGHT_DRIVE);
 	
-	private SpeedControllerGroup leftGroup = new SpeedControllerGroup(leftFrontMotor, leftRearMotor);
-	private SpeedControllerGroup rightGroup = new SpeedControllerGroup(rightFrontMotor, rightRearMotor);
-	
-	private DifferentialDrive robotDrive = new DifferentialDrive(leftGroup, rightGroup);
-	
+	private DifferentialDrive robotDrive = new DifferentialDrive(leftController, rightController);
+			
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(driveCommand());
+		setDefaultCommand(stopCommand());		
 	}
 	
 	public Command driveCommand() {
-		return QuickCommand.continuous(this, () -> robotDrive.tankDrive(Robot.oi.leftDriver().getY(), Robot.oi.rightDriver().getY()));
+		return QuickCommand.continuous(this, () -> robotDrive.tankDrive(leftController.get(), rightController.get()));
 	}
-
+	
+	public Command stopCommand() {
+		return QuickCommand.continuous(this, () -> robotDrive.tankDrive(0, 0));
+	}
 }
