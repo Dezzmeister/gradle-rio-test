@@ -1,14 +1,17 @@
 package org.usfirst.frc.team69.robot.subsystems;
 
-import org.hyperonline.hyperlib.QuickCommand;
-import org.usfirst.frc.team69.robot.RobotMap;
+import static org.usfirst.frc.team69.robot.RobotMap.Grippah.SOLENOID_FORWARD;
+import static org.usfirst.frc.team69.robot.RobotMap.Grippah.SOLENOID_REVERSE;
 
-import edu.wpi.first.wpilibj.Solenoid;
+import org.hyperonline.hyperlib.QuickCommand;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Grippah extends Subsystem {
-	private Solenoid solenoid = new Solenoid(RobotMap.Grippah.SOLENOID);
+	private DoubleSolenoid solenoid = new DoubleSolenoid(SOLENOID_FORWARD, SOLENOID_REVERSE);
 
 	@Override
 	protected void initDefaultCommand() {
@@ -16,10 +19,10 @@ public class Grippah extends Subsystem {
 	}
 	
 	public Command openGrippah() {
-		return QuickCommand.continuous(this, () -> solenoid.set(true));
+		return QuickCommand.continuous(this, () -> solenoid.set(Value.kForward));
 	}
 	
 	public Command closeGrippah() {
-		return QuickCommand.continuous(this, () -> solenoid.set(false));
+		return QuickCommand.continuous(this, () -> solenoid.set(Value.kReverse));
 	}
 }

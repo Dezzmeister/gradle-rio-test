@@ -4,6 +4,7 @@ import org.hyperonline.hyperlib.HYPERRobot;
 import org.hyperonline.hyperlib.oi.OI;
 import org.usfirst.frc.team69.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team69.robot.subsystems.Grippah;
+import org.usfirst.frc.team69.robot.subsystems.Lifter;
 
 public class Robot extends HYPERRobot {
 	
@@ -11,6 +12,7 @@ public class Robot extends HYPERRobot {
 	
 	public static DriveSubsystem driveSubsystem;
 	public static Grippah grippah;
+	public static Lifter lifter;
 	
 	@Override
 	protected void initOI() {
@@ -22,6 +24,7 @@ public class Robot extends HYPERRobot {
 	protected void initSubsystems() {
 		driveSubsystem = new DriveSubsystem();
 		grippah = new Grippah();
+		lifter = new Lifter();
 	}
 
 	@Override

@@ -11,6 +11,11 @@ public class RobotMap {
     }
 	
 	public static class Grippah {
-		@Port(type = Type.PCM) public static final int SOLENOID = 2;
+		@Port(type = Type.PCM) public static final int SOLENOID_FORWARD = 2;
+		@Port(type = Type.PCM) public static final int SOLENOID_REVERSE = 3;
+	}
+	
+	public static class Lifter {
+		@Port(type = Type.PWM) public static final int MOTOR = 4;
 	}
 }
