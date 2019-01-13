@@ -1,6 +1,7 @@
 package org.usfirst.frc.team69.robot.subsystems;
 
 import org.hyperonline.hyperlib.QuickCommand;
+import org.usfirst.frc.team69.robot.Robot;
 import org.usfirst.frc.team69.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.SpeedController;
@@ -18,11 +19,11 @@ public class DriveSubsystem extends Subsystem {
 			
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(stopCommand());		
+		setDefaultCommand(driveCommand());		
 	}
 	
 	public Command driveCommand() {
-		return QuickCommand.continuous(this, () -> robotDrive.tankDrive(leftController.get(), rightController.get()));
+		return QuickCommand.continuous(this, () -> robotDrive.tankDrive(Robot.oi.leftDriver().getY(), Robot.oi.rightDriver().getY()));
 	}
 	
 	public Command stopCommand() {
