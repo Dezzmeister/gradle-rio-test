@@ -2,10 +2,13 @@ package org.usfirst.frc.team69.robot;
 
 import org.hyperonline.hyperlib.HYPERRobot;
 import org.hyperonline.hyperlib.oi.OI;
+import org.usfirst.frc.team69.robot.subsystems.DriveSubsystem;
 
 public class Robot extends HYPERRobot {
 	
 	public static OI oi;
+	
+	public static DriveSubsystem driveSubsystem;
 	
 	@Override
 	protected void initOI() {
@@ -15,8 +18,7 @@ public class Robot extends HYPERRobot {
 
 	@Override
 	protected void initSubsystems() {
-		// TODO Auto-generated method stub
-
+		driveSubsystem = new DriveSubsystem();
 	}
 
 	@Override
