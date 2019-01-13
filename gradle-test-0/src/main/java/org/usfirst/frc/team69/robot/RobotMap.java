@@ -13,4 +13,8 @@ public class RobotMap {
 	public static class Grippah {
 		@Port(type = Type.PCM) public static final int SOLENOID = 2;
 	}
+	
+	public static class Ramp {
+		@Port(type = Type.PCM) public static final int SOLENOID = 3;
+	}
 }
