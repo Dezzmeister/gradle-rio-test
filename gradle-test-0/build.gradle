@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'edu.wpi.first.GradleRIO' version '2019.1.1'
+}
+
+def JAVA_MAIN_CLASS = 'org.usfirst.frc.team69.robot.Main'
+
+sourceCompatibility = 1.11
+
+deploy {
+    targets {
+        target('roborio', edu.wpi.first.gradlerio.frc.RoboRIO) {
+            team = frc.getTeamOrDefault(69)
+        }
+    }
+    artifacts {
+        artifact('frcJava', edu.wpi.first.gradlerio.frc.FRCJavaArtifact) {
+            targets << 'roborio'
+        }
+    }
+}
+
+repositories {
+    maven {
+        url 'https://dl.bintray.com/teamhyper/maven'
+    }
+}
+
+dependencies {
+    compile wpi.deps.wpilib()
+    compile wpi.deps.vendor.java()
+    nativeZip wpi.deps.vendor.jni(wpi.platforms.roborio)
+    nativeDesktopZip wpi.deps.vendor.jni(wpi.platforms.desktop)
+    compile 'org.hyperonline:hyperlib:1.0.0'
+}
+
+jar {
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(JAVA_MAIN_CLASS)
+}
+
+wrapper {
+    gradleVersion = '5.1'
+}
