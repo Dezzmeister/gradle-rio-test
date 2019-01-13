@@ -18,4 +18,8 @@ public class RobotMap {
 	public static class Lifter {
 		@Port(type = Type.PWM) public static final int MOTOR = 4;
 	}
+	
+	public static class Ramp {
+		@Port(type = Type.PCM) public static final int SOLENOID = 3;
+	}
 }
