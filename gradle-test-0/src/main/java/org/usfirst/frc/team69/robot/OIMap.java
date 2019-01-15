@@ -4,7 +4,6 @@ import org.hyperonline.hyperlib.oi.MapJoystick;
 import org.hyperonline.hyperlib.oi.MapJoystick.Role;
 import org.hyperonline.hyperlib.oi.MapJoystick.Type;
 import org.hyperonline.hyperlib.oi.WhenPressed;
-import org.hyperonline.hyperlib.oi.WhenReleased;
 import org.hyperonline.hyperlib.oi.WhileHeld;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -23,11 +22,13 @@ public class OIMap {
     @MapJoystick(port = 2, role = Role.LEFT_OPERATOR, type = Type.LOGITECH_2_AXIS)
     public static class LeftOperator {
     	@WhileHeld(1) public final Command raiseLifter = Robot.lifter.moveUp();
-    	@WhenReleased(2) public final Command stopLifter = Robot.lifter.stop();
+    	@WhileHeld(2) public final Command raiseShoulder = Robot.shoulder.upShold();
     }
     
     @MapJoystick(port = 3, role = Role.RIGHT_OPERATOR, type = Type.LOGITECH_2_AXIS)
     public static class RightOperator {
     	@WhileHeld(1) public final Command lowerLifter = Robot.lifter.moveDown();
+    	@WhileHeld(2) public final Command lowerShoulder = Robot.shoulder.downShold();
     }
+    
 }

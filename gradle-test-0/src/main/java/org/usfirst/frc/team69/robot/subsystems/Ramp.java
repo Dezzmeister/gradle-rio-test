@@ -10,13 +10,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Ramp extends Subsystem {
 	private Solenoid rSolenoid = new Solenoid(RobotMap.Ramp.SOLENOID);
-	private DoubleSolenoid rDoubleSolenoid = new DoubleSolenoid (RobotMap.Ramp.DOUBLE_SOLENOID);
+	private DoubleSolenoid rDoubleSolenoid = new DoubleSolenoid (0,0);
 	private Solenoid lSolenoid = new Solenoid(RobotMap.Ramp.SOLENOID);
-	private DoubleSolenoid lDoubleSolenoid = new DoubleSolenoid (RobotMap.Ramp.DOUBLESOLENOID);
+	private DoubleSolenoid lDoubleSolenoid = new DoubleSolenoid (0,0);
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(rampMoveDown());		
+		//setDefaultCommand(rampMoveDown());		
 	}
 	
 	public Command leftRampRelease () {
@@ -28,10 +28,10 @@ public class Ramp extends Subsystem {
 	}
 	
 	public Command leftRampRise () {
-		return QuickCommand.continuous (this, () -> lDoubleSolenoid.set(reverse));
+		return QuickCommand.continuous (this, () -> lDoubleSolenoid.set(null));
 	}
 	
 	public Command rightRampRise () {
-		return QuickCommand.continuous (this, () -> rDoubleSolenoid.set(reverse));
+		return QuickCommand.continuous (this, () -> rDoubleSolenoid.set(null));
 	}
 }
