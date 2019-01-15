@@ -22,12 +22,12 @@ public class OIMap {
     
     @MapJoystick(port = 2, role = Role.LEFT_OPERATOR, type = Type.LOGITECH_2_AXIS)
     public static class LeftOperator {
-    	//@WhileHeld(1) public final Command raiseLifter = Robot.lifter.moveUp();
-    	//@WhenReleased(2) public final Command stopLifter = Robot.lifter.stop();
+    	@WhileHeld(1) public final Command raiseLifter = Robot.lifter.moveUp();
+    	@WhenReleased(2) public final Command stopLifter = Robot.lifter.stop();
     }
     
     @MapJoystick(port = 3, role = Role.RIGHT_OPERATOR, type = Type.LOGITECH_2_AXIS)
     public static class RightOperator {
-    	//@WhileHeld(1) public final Command lowerLifter = Robot.lifter.moveDown();
+    	@WhileHeld(1) public final Command lowerLifter = Robot.lifter.moveDown();
     }
 }

@@ -16,6 +16,10 @@ public class RobotMap {
 	}
 	
 	public static class Lifter {
+		@Port(type = Type.PWM) public static final int MOTOR = 3;
+	}
+	
+	public static class Shoulder {
 		@Port(type = Type.PWM) public static final int MOTOR = 4;
 	}
 	

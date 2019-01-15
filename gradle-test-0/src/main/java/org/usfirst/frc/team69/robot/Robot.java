@@ -17,13 +17,12 @@ public class Robot extends HYPERRobot {
 	@Override
 	protected void initOI() {
 		oi = new OI(OIMap.class, true);
-
 	}
 
 	@Override
 	protected void initSubsystems() {
 		driveSubsystem = new DriveSubsystem();
-		grippah = new Grippah();
+		//grippah = new Grippah();
 		lifter = new Lifter();
 	}
 
