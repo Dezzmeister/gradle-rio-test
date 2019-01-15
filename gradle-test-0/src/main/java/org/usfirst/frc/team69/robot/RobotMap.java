@@ -19,7 +19,13 @@ public class RobotMap {
 		@Port(type = Type.PWM) public static final int MOTOR = 4;
 	}
 	
+	public static class Shoulder {
+		@Port(type = Type.PWM) public static final int SHOULDER = 2;
+	}
+	
 	public static class Ramp {
 		@Port(type = Type.PCM) public static final int SOLENOID = 3;
+		@Port(type = Type.PCM) public static final int SOLENOID_LEFT = 4;
+		@Port(type = Type.PCM) public static final int SOLENOID_RIGHT = 5;
 	}
 }

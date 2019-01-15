@@ -3,35 +3,35 @@ package org.usfirst.frc.team69.robot.subsystems;
 import org.hyperonline.hyperlib.QuickCommand;
 import org.usfirst.frc.team69.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Ramp extends Subsystem {
-	private Solenoid solenoid = new Solenoid(RobotMap.Ramp.SOLENOID);
+	private Solenoid rSolenoid = new Solenoid(RobotMap.Ramp.SOLENOID);
+	private DoubleSolenoid rDoubleSolenoid = new DoubleSolenoid (RobotMap.Ramp.DOUBLE_SOLENOID);
+	private Solenoid lSolenoid = new Solenoid(RobotMap.Ramp.SOLENOID);
+	private DoubleSolenoid lDoubleSolenoid = new DoubleSolenoid (RobotMap.Ramp.DOUBLESOLENOID);
 
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(rampMoveDown());		
 	}
 	
-	/*public Command rampUp() {
-		return QuickCommand.oneShot(this, () -> solenoid.set(true));
+	public Command leftRampRelease () {
+		return QuickCommand.oneShot (this, () -> lSolenoid.set(true));
 	}
 	
-	public Command rampDown() {
-		return QuickCommand.oneShot(this, () -> solenoid.set(false));
+	public Command rightRampRelease () {
+		return QuickCommand.oneShot (this, () -> rSolenoid.set(true));
 	}
 	
-	public Command rampMiddle() {
-		return QuickCommand.oneShot(this, () -> solenoid.set(false));
-	}*/
-	
-	public Command rampMoveUp () {
-		return QuickCommand.continuous (this, () -> solenoid.set(true));
+	public Command leftRampRise () {
+		return QuickCommand.continuous (this, () -> lDoubleSolenoid.set(reverse));
 	}
 	
-	public Command rampMoveDown () {
-		return QuickCommand.continuous (this, () -> solenoid.set(false));
+	public Command rightRampRise () {
+		return QuickCommand.continuous (this, () -> rDoubleSolenoid.set(reverse));
 	}
 }

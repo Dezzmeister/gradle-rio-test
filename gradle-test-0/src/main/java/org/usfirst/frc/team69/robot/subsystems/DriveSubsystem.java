@@ -28,7 +28,12 @@ public class DriveSubsystem extends Subsystem {
 	
 	public Command stopCommand() {
 		return QuickCommand.continuous(this, () -> robotDrive.tankDrive(0, 0));
+	
 	}
+	public Command cartdrive() {
+		return QuickCommand.continuous(this, ()-> robotDrive.ca)
+	}
+
 	
 	//Joe is god
 }
