@@ -1,17 +1,28 @@
 package org.usfirst.frc.team69.robot.subsystems;
 
+import org.hyperonline.hyperlib.PeriodicScheduler;
 import org.hyperonline.hyperlib.QuickCommand;
+import org.usfirst.frc.team69.robot.Robot;
 import org.usfirst.frc.team69.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Shoulder extends Subsystem {
-	private VictorSP motor = new VictorSP(RobotMap.Shoulder.MOTOR);
+	private Talon motor = new Talon(RobotMap.Shoulder.MOTOR);
+	private AnalogPotentiometer potentiometer = new AnalogPotentiometer(RobotMap.Shoulder.POTENTIOMETER,360);
 	
-	private static final float UP_POWER = 0.5f;
-	private static final float DOWN_POWER = -0.5f;
+	public Shoulder() {
+		super();
+		
+		LiveWindow.add(potentiometer);
+		
+		PeriodicScheduler.getInstance().addEvent(this::showInfo);
+	}
 	
 	@Override
 	protected void initDefaultCommand() {
@@ -22,11 +33,11 @@ public class Shoulder extends Subsystem {
 		return QuickCommand.continuous(this, () -> motor.set(0));
 	}
 	
-	public Command moveUp() {
-		return QuickCommand.continuous(this, () -> motor.set(UP_POWER));
+	public Command move() {
+		return QuickCommand.continuous(this, () -> motor.set(Robot.oi.leftOperator().getY()));
 	}
 	
-	public Command moveDown() {
-		return QuickCommand.continuous(this, () -> motor.set(DOWN_POWER));
+	public void showInfo() {
+		SmartDashboard.putNumber("Shoulder Potentiometer", potentiometer.get());
 	}
 }

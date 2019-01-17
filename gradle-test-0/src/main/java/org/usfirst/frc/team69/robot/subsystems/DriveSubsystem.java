@@ -23,7 +23,7 @@ public class DriveSubsystem extends Subsystem {
 	}
 	
 	public Command driveCommand() {
-		return QuickCommand.continuous(this, () -> robotDrive.tankDrive(Robot.oi.leftDriver().getY(), Robot.oi.rightDriver().getY()));
+		return QuickCommand.continuous(this, () -> robotDrive.tankDrive(-Robot.oi.leftDriver().getY(), -Robot.oi.rightDriver().getY()));
 	}
 	
 	public Command stopCommand() {
