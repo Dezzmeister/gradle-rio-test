@@ -30,11 +30,12 @@ public class Shoulder extends Subsystem {
 	}
 	
 	public Command stop() {
-		return QuickCommand.continuous(this, () -> motor.set(0));
+		// return QuickCommand.continuous(this, () -> motor.set(0));
+		return QuickCommand.continuous(this, () -> motor.setSpeed(0));
 	}
 	
 	public Command move() {
-		return QuickCommand.continuous(this, () -> motor.set(Robot.oi.leftOperator().getY()));
+		return QuickCommand.continuous(this, () -> motor.setSpeed(Robot.oi.leftOperator().getY()));
 	}
 	
 	public void showInfo() {
