@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Shoulder extends Subsystem {
 	private Talon motor = new Talon(RobotMap.Shoulder.MOTOR);
-	private AnalogPotentiometer potentiometer = new AnalogPotentiometer(RobotMap.Shoulder.POTENTIOMETER,360);
+	private AnalogPotentiometer potentiometer = new AnalogPotentiometer(RobotMap.Shoulder.POTENTIOMETER,3600);
 	
 	public Shoulder() {
 		super();
@@ -28,7 +28,7 @@ public class Shoulder extends Subsystem {
 	protected void initDefaultCommand() {
 		setDefaultCommand(stop());		
 	}
-	
+		
 	public Command stop() {
 		// return QuickCommand.continuous(this, () -> motor.set(0));
 		return QuickCommand.continuous(this, () -> motor.setSpeed(0));

@@ -33,7 +33,8 @@ public class OIMap {
     	@WhileHeld(1) public final Command moveLifter = lifter.move(Robot.oi.rightOperator());
     	@WhenPressed(8) public final Command resetLifterEncoder = lifter.resetEncoder();
     	
-    	@WhenPressed(9) public final Command pidTest = lifter.moveTo(6, INCHES);
-    	@WhileHeld(7) public final Command dumbPidCommandThatShouldNeverBeUsed = lifter.stupidPIDMoveCommand(Robot.oi.leftOperator());
+    	//@WhenPressed(9) public final Command pidTest = lifter.moveTo(6, INCHES);
+    	@WhenPressed(4) public final Command pidTest0 = lifter.moveToPreference(lifter.position0, INCHES);
+    	@WhenPressed(5) public final Command pidTest1 = lifter.moveToPreference(lifter.position1, INCHES);
     }
 }
