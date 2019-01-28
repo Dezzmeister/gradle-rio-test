@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+//246
 public class Shoulder extends Subsystem {
 	private Talon motor = new Talon(RobotMap.Shoulder.MOTOR);
 	private AnalogPotentiometer potentiometer = new AnalogPotentiometer(RobotMap.Shoulder.POTENTIOMETER,360);
@@ -35,6 +36,12 @@ public class Shoulder extends Subsystem {
 	public Command hold() {
 		
 		return QuickCommand.pidHold(this, pid , potentiometer );
+		
+		
+	}
+	
+	public Command goTo90Deg () {
+		return QuickCommand.pidMove(this, pid, 246. , true);
 		
 		
 	}

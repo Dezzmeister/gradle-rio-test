@@ -14,7 +14,7 @@ public class DriveSubsystem extends Subsystem {
 	
 	private SpeedController leftController = new VictorSP(RobotMap.Drive.LEFT_DRIVE);
 	private SpeedController rightController = new VictorSP(RobotMap.Drive.RIGHT_DRIVE);
-	
+	private int dir = 1;
 	private DifferentialDrive robotDrive = new DifferentialDrive(leftController, rightController);
 			
 	@Override
@@ -23,12 +23,17 @@ public class DriveSubsystem extends Subsystem {
 	}
 	
 	public Command driveCommand() {
-		return QuickCommand.continuous(this, () -> robotDrive.tankDrive(-Robot.oi.leftDriver().getY(), -Robot.oi.rightDriver().getY()));
+		return QuickCommand.continuous(this, () -> robotDrive.tankDrive(-dir*Robot.oi.leftDriver().getY(), -dir*Robot.oi.rightDriver().getY()));
 	}
 	
 	public Command stopCommand() {
 		return QuickCommand.continuous(this, () -> robotDrive.tankDrive(0, 0));
 	}
+	
+	public Command swapFront() {
+		return QuickCommand.oneShot(this, () -> dir *= -1);
+	}
+	
 	
 	//Joe is god
 	//

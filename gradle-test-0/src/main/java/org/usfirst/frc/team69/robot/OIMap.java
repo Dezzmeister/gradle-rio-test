@@ -2,13 +2,14 @@ package org.usfirst.frc.team69.robot;
 
 import static org.usfirst.frc.team69.robot.Robot.lifter;
 import static org.usfirst.frc.team69.robot.Robot.shoulder;
-import static org.usfirst.frc.team69.robot.units.DistanceUnit.*;
-
+import static org.usfirst.frc.team69.robot.units.DistanceUnit.INCHES;
+import static org.usfirst.frc.team69.robot.Robot.driveSubsystem;
 import org.hyperonline.hyperlib.oi.MapJoystick;
 import org.hyperonline.hyperlib.oi.MapJoystick.Role;
 import org.hyperonline.hyperlib.oi.MapJoystick.Type;
 import org.hyperonline.hyperlib.oi.WhenPressed;
 import org.hyperonline.hyperlib.oi.WhileHeld;
+import org.usfirst.frc.team69.robot.subsystems.DriveSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -16,6 +17,7 @@ public class OIMap {
 	@MapJoystick(port = 0, role = Role.LEFT_DRIVER, type = Type.LOGITECH_2_AXIS)
     public static class LeftDriver {
 		//@WhenPressed(1) public final Command openGrippah = Robot.grippah.openGrippah();
+		@WhenPressed(2) public final Command swapTheFront = driveSubsystem.swapFront();
     }
 
     @MapJoystick(port = 1, role = Role.RIGHT_DRIVER, type = Type.LOGITECH_2_AXIS)
@@ -26,6 +28,7 @@ public class OIMap {
     @MapJoystick(port = 2, role = Role.LEFT_OPERATOR, type = Type.LOGITECH_2_AXIS)
     public static class LeftOperator {
     	@WhileHeld(1) public final Command moveShoulder = shoulder.move();
+    	@WhenPressed(2) public final Command moveShoulderTo90Deg = shoulder.goTo90Deg();
     }
     
     @MapJoystick(port = 3, role = Role.RIGHT_OPERATOR, type = Type.LOGITECH_2_AXIS)
